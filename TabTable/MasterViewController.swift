@@ -34,14 +34,13 @@ class MasterViewController: NSViewController {
             println("Delete")
             var rows = tableView.selectedRowIndexes
             var toDelete : NSMutableArray = []
-//            for item in rows{
-//                if item==allToDoItems.count{
-//                    continue
-//                }
-//                toDelete.addObject(allToDoItems[item])
-//            }
+
             var offset = 0
+            var stop = allToDoItems.count
             for item in rows{
+                if item>=stop{
+                    continue
+                }
                 var temp : Int = item
                 allToDoItems.removeAtIndex(temp-offset)
                 offset+=1
