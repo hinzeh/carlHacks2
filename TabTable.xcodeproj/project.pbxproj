@@ -12,9 +12,7 @@
 		3DD57E831AEC03BC00FCFFED /* AddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD57E821AEC03BC00FCFFED /* AddTableViewCell.swift */; };
 		3DD57E8C1AEC370A00FCFFED /* ToDoItemObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD57E8A1AEC370A00FCFFED /* ToDoItemObj.swift */; };
 		3DD57E8D1AEC370A00FCFFED /* ToDoItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DD57E8B1AEC370A00FCFFED /* ToDoItems.plist */; };
-		F627BEF41AEBE60600ECE810 /* TableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F627BEF31AEBE60600ECE810 /* TableData.swift */; };
 		F6FF4FA61AEB5DEE00D3F535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FA51AEB5DEE00D3F535 /* AppDelegate.swift */; };
-		F6FF4FA91AEB5DEE00D3F535 /* TabTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FA71AEB5DEE00D3F535 /* TabTable.xcdatamodeld */; };
 		F6FF4FAB1AEB5DEE00D3F535 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6FF4FAA1AEB5DEE00D3F535 /* Images.xcassets */; };
 		F6FF4FAE1AEB5DEE00D3F535 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FF4FAC1AEB5DEE00D3F535 /* MainMenu.xib */; };
 		F6FF4FBA1AEB5DEE00D3F535 /* TabTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FB91AEB5DEE00D3F535 /* TabTableTests.swift */; };
@@ -41,11 +39,9 @@
 		3DD57E821AEC03BC00FCFFED /* AddTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTableViewCell.swift; path = ../AddTableViewCell.swift; sourceTree = "<group>"; };
 		3DD57E8A1AEC370A00FCFFED /* ToDoItemObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItemObj.swift; sourceTree = "<group>"; };
 		3DD57E8B1AEC370A00FCFFED /* ToDoItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToDoItems.plist; sourceTree = "<group>"; };
-		F627BEF31AEBE60600ECE810 /* TableData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableData.swift; sourceTree = "<group>"; };
 		F6FF4FA01AEB5DED00D3F535 /* TabTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FF4FA41AEB5DED00D3F535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6FF4FA51AEB5DEE00D3F535 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F6FF4FA81AEB5DEE00D3F535 /* TabTable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TabTable.xcdatamodel; sourceTree = "<group>"; };
 		F6FF4FAA1AEB5DEE00D3F535 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F6FF4FAD1AEB5DEE00D3F535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		F6FF4FB31AEB5DEE00D3F535 /* TabTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TabTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,8 +134,6 @@
 				3DD57E7C1AEB670400FCFFED /* DragView.swift */,
 				F6FF4FAC1AEB5DEE00D3F535 /* MainMenu.xib */,
 				F6FF4FA51AEB5DEE00D3F535 /* AppDelegate.swift */,
-				F6FF4FA71AEB5DEE00D3F535 /* TabTable.xcdatamodeld */,
-				F627BEF31AEBE60600ECE810 /* TableData.swift */,
 				F6FF4FC91AEB5E8F00D3F535 /* MasterViewController.swift */,
 				3DD57E7E1AEBEA6200FCFFED /* TableViewCell.swift */,
 				F6FF4FCA1AEB5E8F00D3F535 /* MasterViewController.xib */,
@@ -269,12 +263,10 @@
 			files = (
 				F6FF4FCE1AEB5EAA00D3F535 /* ViewController.swift in Sources */,
 				F6FF4FCB1AEB5E8F00D3F535 /* MasterViewController.swift in Sources */,
-				F6FF4FA91AEB5DEE00D3F535 /* TabTable.xcdatamodeld in Sources */,
 				3DD57E7F1AEBEA6200FCFFED /* TableViewCell.swift in Sources */,
 				F6FF4FC61AEB5E4F00D3F535 /* TableItemData.swift in Sources */,
 				3DD57E8C1AEC370A00FCFFED /* ToDoItemObj.swift in Sources */,
 				3DD57E831AEC03BC00FCFFED /* AddTableViewCell.swift in Sources */,
-				F627BEF41AEBE60600ECE810 /* TableData.swift in Sources */,
 				F6FF4FC81AEB5E6000D3F535 /* TableItemDoc.swift in Sources */,
 				F6FF4FA61AEB5DEE00D3F535 /* AppDelegate.swift in Sources */,
 				3DD57E7D1AEB670400FCFFED /* DragView.swift in Sources */,
@@ -480,19 +472,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		F6FF4FA71AEB5DEE00D3F535 /* TabTable.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				F6FF4FA81AEB5DEE00D3F535 /* TabTable.xcdatamodel */,
-			);
-			currentVersion = F6FF4FA81AEB5DEE00D3F535 /* TabTable.xcdatamodel */;
-			path = TabTable.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = F6FF4F981AEB5DED00D3F535 /* Project object */;
 }
