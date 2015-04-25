@@ -30,12 +30,12 @@ class MasterViewController: NSViewController {
     }
     
     func setupSampleTable() {
-        let item1 = TableItemDoc(title: "Hi")
-        let item2 = TableItemDoc(title: "Hi")
-        let item3 = TableItemDoc(title: "Hi")
-        let item4 = TableItemDoc(title: "Hi")
-        let item5 = TableItemDoc(title: "Hi")
-        let item6 = TableItemDoc(title: "Hi")
+        let item1 = TableItemDoc(title: "Hi1")
+        let item2 = TableItemDoc(title: "Hi2")
+        let item3 = TableItemDoc(title: "Hi3")
+        let item4 = TableItemDoc(title: "Hi4")
+        let item5 = TableItemDoc(title: "Hi5")
+        let item6 = TableItemDoc(title: "Hi6")
         table = [item1, item2,item3,item4,item5,item6]
     }
     
@@ -52,7 +52,7 @@ extension MasterViewController: NSTableViewDataSource {
         // 1
 //        var cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         if (row != self.table.count){
-            var cellView = TableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50))
+            var cellView = TableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50),doc: self.table[row])
             if tableColumn!.identifier == "TableColumn" {
                 // 3
                 let tableDoc = self.table[row]

@@ -9,6 +9,10 @@
 import Foundation
 import Cocoa
 
+protocol DragViewDelegate {
+    func receiveDragged(object:NSString)
+}
+
 class DragView: NSImageView, NSDraggingDestination{
 
     var highlight : Bool
