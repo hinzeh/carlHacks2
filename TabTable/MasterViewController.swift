@@ -9,7 +9,6 @@
 import Cocoa
 
 class MasterViewController: NSViewController {
-    var table = [TableItemDoc]()
     var allToDoItems = [ToDoItemObj]()
     
     @IBOutlet weak var tableView: NSTableView!
@@ -54,16 +53,6 @@ class MasterViewController: NSViewController {
         self.loadData()
         tableView.allowsMultipleSelection = true
         // Do view setup here.
-    }
-    
-    func setupSampleTable() {
-        let item1 = TableItemDoc(title: "http://www.moodle.com")
-        let item2 = TableItemDoc(title: "ThisShouldBeTooLongToCompletelyFitOnTheTableView,ButWeWillSee")
-        let item3 = TableItemDoc(title: "Hi3")
-        let item4 = TableItemDoc(title: "Hi4")
-        let item5 = TableItemDoc(title: "Hi5")
-        let item6 = TableItemDoc(title: "Hi6")
-        table = [item1, item2,item3,item4,item5,item6]
     }
     
     func loadData() {
