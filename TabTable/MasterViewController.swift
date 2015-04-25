@@ -24,7 +24,7 @@ class MasterViewController: NSViewController {
         }else{
             //other items
         }
-        println("Table Stuff \(sender.clickedRow)")
+        println("Table's Stuff \(sender.clickedRow)")
     }
 
     override func keyDown(theEvent: NSEvent) {
