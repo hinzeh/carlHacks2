@@ -8,11 +8,16 @@
 
 import Foundation
 import Cocoa
+import AppKit
 
 class TableViewCell : NSTableCellView{
     var text: NSTextField
     var date: NSTextField
     var site: NSURL = NSURL()
+    var button: NSButton
+    var deleteButton: NSButton
+    var buttonPress: Bool=false
+
     init(frame frameRect:NSRect, doc:ToDoItemObj) {
         var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
         self.text = NSTextField(frame: textRect)
@@ -48,11 +53,32 @@ class TableViewCell : NSTableCellView{
         self.date.bezeled = false
         self.date.sizeToFit()
         
+        var buttonRect = NSRect(x: frameRect.width-50, y: 5, width: frameRect.width/20, height: frameRect.height-30)
+        self.button=NSButton(frame: buttonRect)
+        self.button.bezelStyle = NSBezelStyle.SmallSquareBezelStyle
+        self.button.title="▾"
+        self.button.action = "myAction:"
+        
+        
+        let utf8 : [UInt8]=[0xE2, 0x9C, 0x98, 0]
+        let str=NSString(bytes: utf8, length: utf8.count, encoding: NSUTF8StringEncoding)
+        var deleteButtonRect = NSRect(x: frameRect.width-50, y: 25, width: frameRect.width/20, height: frameRect.height-30)
+        self.deleteButton=NSButton(frame: deleteButtonRect)
+        self.deleteButton.bezelStyle = NSBezelStyle.SmallSquareBezelStyle
+        self.deleteButton.title=str as! String
+        self.deleteButton.action = "deleteAction:"
+
+        
         println(self.text.stringValue)
         super.init(frame: frameRect)
+        self.button.target = self
+        self.deleteButton.target = self
+
         
         self.addSubview(text)
         self.addSubview(date)
+        self.addSubview(button)
+        self.addSubview(deleteButton)
         site = NSURL(fileURLWithPath: "http://www.google.com")!
         
     }
@@ -78,5 +104,30 @@ class TableViewCell : NSTableCellView{
     func setString(text:String){
         self.text.stringValue = text
         
+    }
+    
+    func myAction(obj:AnyObject?){
+        var testArr: Array<String>
+        testArr=Array()
+        testArr.append("hey")
+        testArr.append("hey again")
+        if buttonPress{
+            buttonPress=false
+        }
+        if !buttonPress{
+            buttonPress=true
+            showURLS(testArr)
+        }
+    }
+    
+    func deleteAction(obj:AnyObject?){
+        
+    }
+    
+    func showURLS(urlArray: Array<String>){
+        var url: String
+        for url: String in urlArray{
+            
+        }
     }
 }
