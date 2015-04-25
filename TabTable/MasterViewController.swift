@@ -26,10 +26,34 @@ class MasterViewController: NSViewController {
         }
         println("Table Stuff \(sender.clickedRow)")
     }
+
+    override func keyDown(theEvent: NSEvent) {
+        self.interpretKeyEvents([theEvent])
+        var chars : String = theEvent.characters!
+        if(theEvent.keyCode == 51){
+            println("Delete")
+            var rows = tableView.selectedRowIndexes
+            var toDelete : NSMutableArray = []
+//            for item in rows{
+//                if item==allToDoItems.count{
+//                    continue
+//                }
+//                toDelete.addObject(allToDoItems[item])
+//            }
+            var offset = 0
+            for item in rows{
+                var temp : Int = item
+                allToDoItems.removeAtIndex(temp-offset)
+                offset+=1
+            }
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadData()
+        tableView.allowsMultipleSelection = true
         // Do view setup here.
     }
     
