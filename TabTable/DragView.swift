@@ -9,30 +9,69 @@
 import Foundation
 import Cocoa
 
+protocol DragViewDelegate {
+    func receiveDragged(object:AnyObject)
+}
+
 class DragView: NSImageView, NSDraggingDestination{
 
     var highlight : Bool
-    
+    var delegate : DragViewDelegate
     required init?(coder: NSCoder) {
         self.highlight = false
+        delegate = coder as! DragViewDelegate
+        
         super.init(coder: coder)
         self.registerForDraggedTypes([NSURLPboardType,NSStringPboardType])//NSImage.imagePasteboardTypes())
     }
-    override init(frame frameRect: NSRect) {
+    init(frame frameRect: NSRect, newDelegate:DragViewDelegate) {
         self.highlight = false
+        self.delegate = newDelegate
+
         super.init(frame: frameRect)
         self.registerForDraggedTypes([NSURLPboardType,NSStringPboardType])//NSImage.imagePasteboardTypes())
-
     }
     
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
+        
+        var bPath:NSBezierPath = NSBezierPath()
+        bPath.appendBezierPathWithRoundedRect(dirtyRect, xRadius: 5.0, yRadius: 5.0)
+        bPath.lineWidth = 3
+        NSColor(red: 0.13, green: 0.50, blue: 0.2, alpha: 1).set()
+        bPath.stroke()
+        
+        var gradient:NSGradient = NSGradient(colorsAndLocations:
+            (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.25),0.0),
+            (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.5),1))
+        
+        gradient.drawInBezierPath(bPath, angle: 90.0)
+        
         if ( highlight ) {
             //highlight by overlaying a gray border
             NSColor.grayColor().set()
             NSBezierPath.setDefaultLineWidth(5)
             NSBezierPath.strokeRect(dirtyRect)
         }
+
+//        self.image = NSImage(named: "smallplus")
+        var plus = NSImage(named:"smallplus")
+        self.image = plus
+        var ratio = plus!.size.height/dirtyRect.size.height
+        var newSize = NSMakeSize(ratio*plus!.size.width, ratio*plus!.size.height)
+        var newRect = NSZeroRect
+        newRect.size = newSize
+        newRect.origin = NSPoint(x:dirtyRect.width/2-newSize.width/2, y:dirtyRect.height/2-newSize.height/2)
+        
+        
+        var imageRect = NSZeroRect
+        imageRect.size = self.image!.size
+        imageRect.origin = NSZeroPoint
+        
+//        newRect.origin.y = vSize.height/2-previewSize.height/2
+//        newRect.size = previewImage.size
+        self.image!.drawInRect(newRect, fromRect: imageRect, operation: NSCompositingOperation.CompositeSourceOver, fraction: 1.0)
+
     }
     
     override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
@@ -53,7 +92,7 @@ class DragView: NSImageView, NSDraggingDestination{
         itemArray = pasting.readObjectsForClasses([NSString.self,NSURL.self], options: nil)!
         for temp in itemArray{
             //Do shenanigans with the dragged thing(s)
-            println(temp)
+            delegate.receiveDragged(temp)
         }
         self.highlight = false
         self.setNeedsDisplay()

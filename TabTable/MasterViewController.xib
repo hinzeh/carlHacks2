@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="48" rowSizeStyle="automatic" viewBased="YES" id="qu0-Ei-OMM">
-                                <rect key="frame" x="0.0" y="0.0" width="238" height="117"/>
+                                <rect key="frame" x="0.0" y="0.0" width="478" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -66,6 +66,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action selector="tableAction:" target="-2" id="wDT-hd-fCU"/>
                                     <outlet property="dataSource" destination="-2" id="FCu-P0-gYl"/>
                                     <outlet property="delegate" destination="-2" id="Lpz-gf-DQd"/>
                                 </connections>

@@ -10,6 +10,7 @@
 		1EA54B161AEC046500CDDBCF /* MenuControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA54B151AEC046500CDDBCF /* MenuControl.swift */; };
 		3DD57E7D1AEB670400FCFFED /* DragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD57E7C1AEB670400FCFFED /* DragView.swift */; };
 		3DD57E7F1AEBEA6200FCFFED /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD57E7E1AEBEA6200FCFFED /* TableViewCell.swift */; };
+		3DD57E831AEC03BC00FCFFED /* AddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD57E821AEC03BC00FCFFED /* AddTableViewCell.swift */; };
 		F627BEF41AEBE60600ECE810 /* TableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F627BEF31AEBE60600ECE810 /* TableData.swift */; };
 		F6FF4FA61AEB5DEE00D3F535 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FA51AEB5DEE00D3F535 /* AppDelegate.swift */; };
 		F6FF4FA91AEB5DEE00D3F535 /* TabTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FA71AEB5DEE00D3F535 /* TabTable.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 		1EA54B151AEC046500CDDBCF /* MenuControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuControl.swift; sourceTree = "<group>"; };
 		3DD57E7C1AEB670400FCFFED /* DragView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragView.swift; sourceTree = "<group>"; };
 		3DD57E7E1AEBEA6200FCFFED /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		3DD57E821AEC03BC00FCFFED /* AddTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTableViewCell.swift; path = ../AddTableViewCell.swift; sourceTree = "<group>"; };
 		F627BEF31AEBE60600ECE810 /* TableData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableData.swift; sourceTree = "<group>"; };
 		F6FF4FA01AEB5DED00D3F535 /* TabTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FF4FA41AEB5DED00D3F535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		F6FF4FC31AEB5DF600D3F535 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				3DD57E821AEC03BC00FCFFED /* AddTableViewCell.swift */,
 				3DD57E7C1AEB670400FCFFED /* DragView.swift */,
 				F6FF4FAC1AEB5DEE00D3F535 /* MainMenu.xib */,
 				F6FF4FA51AEB5DEE00D3F535 /* AppDelegate.swift */,
@@ -266,6 +269,7 @@
 				3DD57E7F1AEBEA6200FCFFED /* TableViewCell.swift in Sources */,
 				1EA54B161AEC046500CDDBCF /* MenuControl.swift in Sources */,
 				F6FF4FC61AEB5E4F00D3F535 /* TableItemData.swift in Sources */,
+				3DD57E831AEC03BC00FCFFED /* AddTableViewCell.swift in Sources */,
 				F627BEF41AEBE60600ECE810 /* TableData.swift in Sources */,
 				F6FF4FC81AEB5E6000D3F535 /* TableItemDoc.swift in Sources */,
 				F6FF4FA61AEB5DEE00D3F535 /* AppDelegate.swift in Sources */,
