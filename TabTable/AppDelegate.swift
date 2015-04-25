@@ -10,17 +10,32 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    @IBOutlet var statusMenu: NSMenu?;
     @IBOutlet weak var window: NSWindow!
+    var statusItem: NSStatusItem?;
     var masterViewController: MasterViewController!
 
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         masterViewController = MasterViewController(nibName: "MasterViewController", bundle: nil)
         masterViewController.setupSampleTable()
         
         window.contentView.addSubview(masterViewController.view)
         masterViewController.view.frame = (window.contentView as! NSView).bounds
+
+        // menu stuff
+        let bar = NSStatusBar.systemStatusBar()
+        let NSVariableStatusItemLength: CGFloat = -1.0
+        
+        statusItem = bar.statusItemWithLength(CGFloat(NSVariableStatusItemLength))
+        statusItem!.title = "Status Menu"
+        statusItem!.menu = statusMenu
+        statusItem!.highlightMode = true
+        // Insert code here to initialize your application
+
     }
+    
+    
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
