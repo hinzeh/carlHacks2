@@ -12,13 +12,14 @@ class MasterViewController: NSViewController {
     var table = [TableItemDoc]()
     var allToDoItems = [ToDoItemObj]()
     
+    @IBOutlet weak var tableView: NSTableView!
     @IBAction func tableAction(sender: AnyObject) {
         var flags = NSEvent.modifierFlags()
         if(flags == .ShiftKeyMask){
             //do something to get url from table item
             NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.google.com")!)
         }
-        if (sender.clickedRow==self.table.count){
+        if (sender.clickedRow==self.allToDoItems.count){
             //last item
         }else{
             //other items
@@ -130,11 +131,11 @@ extension MasterViewController: NSTableViewDataSource {
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         // 1
 //        var cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
-        if (row != self.table.count){
-            var cellView = TableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50),doc: self.table[row])
+        if (row != self.allToDoItems.count){
+            var cellView = TableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50),doc: self.allToDoItems[row])
             if tableColumn!.identifier == "TableColumn" {
                 // 3
-                let tableDoc = self.table[row]
+                let tableDoc = self.allToDoItems[row]
                 return cellView
             }
         }
@@ -150,10 +151,12 @@ extension MasterViewController: DragViewDelegate{
     func receiveDragged(object: AnyObject) {
         println(object)
         if (object is String || object is NSString){
-            table.append(TableItemDoc(title: object as! String))
+            var newItem = ToDoItemObj.init()
+            newItem.name = object as! String
         }else{
-            table.append(TableItemDoc(title: (object as! NSURL).absoluteString!))
+            allToDoItems.append(ToDoItemObj(title: (object as! NSURL).absoluteString!))
         }
+        tableView.reloadData()
         
     }
 }

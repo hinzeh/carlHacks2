@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MasterViewController" customModule="TabTable" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="qu0-Ei-OMM" id="7yg-Yo-rxh"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
