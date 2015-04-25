@@ -11,6 +11,19 @@ import Cocoa
 class MasterViewController: NSViewController {
     var table = [TableItemDoc]()
 
+    @IBAction func tableAction(sender: AnyObject) {
+        var flags = NSEvent.modifierFlags()
+        if(flags == .ShiftKeyMask){
+            //do something to get url from table item
+            NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.google.com")!)
+        }
+        if (sender.clickedRow==self.table.count-1){
+            //last item
+        }else{
+            //other items
+        }
+        println("Table Stuff \(sender.clickedRow)")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -26,6 +39,7 @@ class MasterViewController: NSViewController {
         let item7 = TableItemDoc(title: "bye")
         table = [item1, item2,item3,item4,item5,item6,item7]
     }
+    
     
 }
 
@@ -53,4 +67,7 @@ extension MasterViewController: NSTableViewDataSource {
 
 // MARK: - NSTableViewDelegate
 extension MasterViewController: NSTableViewDelegate {
+    
+
+    
 }

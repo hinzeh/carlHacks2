@@ -66,6 +66,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <action selector="tableAction:" target="-2" id="wDT-hd-fCU"/>
                                     <outlet property="dataSource" destination="-2" id="FCu-P0-gYl"/>
                                     <outlet property="delegate" destination="-2" id="Lpz-gf-DQd"/>
                                 </connections>

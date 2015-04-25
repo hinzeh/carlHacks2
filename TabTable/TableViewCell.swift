@@ -11,6 +11,7 @@ import Cocoa
 
 class TableViewCell : NSTableCellView{
     var text: NSTextField
+    var site: NSURL = NSURL()
     override init(frame frameRect:NSRect) {
         var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
         self.text = NSTextField(frame: textRect)
@@ -24,11 +25,10 @@ class TableViewCell : NSTableCellView{
         super.init(frame: frameRect)
         
         self.addSubview(text)
+        site = NSURL(fileURLWithPath: "http://www.google.com")!
         
         
-        
-        println(self.text.stringValue)
-    }
+        }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -49,7 +49,6 @@ class TableViewCell : NSTableCellView{
         gradient.drawInBezierPath(bPath, angle: 90.0)
     }
     func setString(text:String){
-        println(self.text.stringValue)
         self.text.stringValue = text
         
     }
