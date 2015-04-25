@@ -9,7 +9,6 @@
 import Cocoa
 
 class MasterViewController: NSViewController {
-    var table = [TableItemDoc]()
     var allToDoItems = [ToDoItemObj]()
     
     @IBOutlet weak var tableView: NSTableView!
