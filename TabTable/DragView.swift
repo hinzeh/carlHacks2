@@ -22,11 +22,24 @@ class DragView: NSImageView, NSDraggingDestination{
         self.highlight = false
         super.init(frame: frameRect)
         self.registerForDraggedTypes([NSURLPboardType,NSStringPboardType])//NSImage.imagePasteboardTypes())
-
+        self.image = NSImage(contentsOfFile: "plus")
     }
     
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
+        
+        var bPath:NSBezierPath = NSBezierPath()
+        bPath.appendBezierPathWithRoundedRect(dirtyRect, xRadius: 5.0, yRadius: 5.0)
+        bPath.lineWidth = 3
+        NSColor(red: 0.13, green: 0.50, blue: 0.2, alpha: 1).set()
+        bPath.stroke()
+        
+        var gradient:NSGradient = NSGradient(colorsAndLocations:
+            (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.25),0.0),
+            (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.5),1))
+        
+        gradient.drawInBezierPath(bPath, angle: 90.0)
+        
         if ( highlight ) {
             //highlight by overlaying a gray border
             NSColor.grayColor().set()
