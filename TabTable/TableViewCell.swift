@@ -10,6 +10,10 @@ import Foundation
 import Cocoa
 import AppKit
 
+protocol TableViewCellDelegate{
+    func deleteTableViewCell(object:AnyObject)
+}
+
 class TableViewCell : NSTableCellView{
     var text: NSTextField
     var date: NSTextField
@@ -17,8 +21,12 @@ class TableViewCell : NSTableCellView{
     var button: NSButton
     var deleteButton: NSButton
     var buttonPress: Bool=false
+    var delegate : TableViewCellDelegate
+    var doc: ToDoItemObj
 
-    init(frame frameRect:NSRect, doc:ToDoItemObj) {
+    init(frame frameRect:NSRect, doc:ToDoItemObj, newDelegate:TableViewCellDelegate) {
+        self.doc=doc
+        self.delegate=newDelegate
         var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
         self.text = NSTextField(frame: textRect)
         self.text.font = NSFont(name: "Courier", size: frameRect.height/2)
@@ -122,6 +130,7 @@ class TableViewCell : NSTableCellView{
     
     func deleteAction(obj:AnyObject?){
         
+        delegate.deleteTableViewCell(self.doc)
     }
     
     func showURLS(urlArray: Array<String>){
