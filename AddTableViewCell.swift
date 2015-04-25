@@ -19,9 +19,9 @@ import Cocoa
 
 class AddTableViewCell : NSTableCellView{
     var dropZone : DragView
-    override init(frame frameRect:NSRect) {
+    init(frame frameRect:NSRect, parent:DragViewDelegate) {
         var dropRect = NSRect(x: frameRect.width/4, y: 0, width: frameRect.width/2, height: frameRect.height)
-        dropZone = DragView(frame: dropRect)
+        dropZone = DragView(frame: dropRect, newDelegate: parent)
         super.init(frame: frameRect)
         
         self.addSubview(dropZone)

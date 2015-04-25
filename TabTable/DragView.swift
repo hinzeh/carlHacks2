@@ -10,20 +10,24 @@ import Foundation
 import Cocoa
 
 protocol DragViewDelegate {
-    func receiveDragged(object:NSString)
+    func receiveDragged(object:AnyObject)
 }
 
 class DragView: NSImageView, NSDraggingDestination{
 
     var highlight : Bool
-    
+    var delegate : DragViewDelegate
     required init?(coder: NSCoder) {
         self.highlight = false
+        delegate = coder as! DragViewDelegate
+        
         super.init(coder: coder)
         self.registerForDraggedTypes([NSURLPboardType,NSStringPboardType])//NSImage.imagePasteboardTypes())
     }
-    override init(frame frameRect: NSRect) {
+    init(frame frameRect: NSRect, newDelegate:DragViewDelegate) {
         self.highlight = false
+        self.delegate = newDelegate
+
         super.init(frame: frameRect)
         self.registerForDraggedTypes([NSURLPboardType,NSStringPboardType])//NSImage.imagePasteboardTypes())
     }
@@ -88,7 +92,7 @@ class DragView: NSImageView, NSDraggingDestination{
         itemArray = pasting.readObjectsForClasses([NSString.self,NSURL.self], options: nil)!
         for temp in itemArray{
             //Do shenanigans with the dragged thing(s)
-            println(temp)
+            delegate.receiveDragged(temp)
         }
         self.highlight = false
         self.setNeedsDisplay()

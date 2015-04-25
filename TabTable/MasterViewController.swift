@@ -60,13 +60,22 @@ extension MasterViewController: NSTableViewDataSource {
                 return cellView
             }
         }
-        return AddTableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50))
+        return AddTableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50),parent: self)
     }
 }
 
 // MARK: - NSTableViewDelegate
 extension MasterViewController: NSTableViewDelegate {
-    
+}
 
-    
+extension MasterViewController: DragViewDelegate{
+    func receiveDragged(object: AnyObject) {
+        println(object)
+        if (object is String || object is NSString){
+            table.append(TableItemDoc(title: object as! String))
+        }else{
+            table.append(TableItemDoc(title: (object as! NSURL).absoluteString!))
+        }
+        
+    }
 }
