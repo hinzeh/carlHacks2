@@ -11,23 +11,45 @@ import Cocoa
 
 class TableViewCell : NSTableCellView{
     var text: NSTextField
+    var date: NSTextField
     var site: NSURL = NSURL()
     init(frame frameRect:NSRect, doc:TableItemDoc) {
         var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
         self.text = NSTextField(frame: textRect)
-        self.text.font = NSFont(name: "Helvetica Neue", size: frameRect.height-20)
+        self.text.font = NSFont(name: "Courier", size: frameRect.height/2)
         self.text.stringValue = doc.data.title
         self.text.editable = false
         self.text.selectable = false
         self.text.drawsBackground = false
         self.text.bezeled = false
+        self.text.sizeToFit()
+        if (self.text.frame.width>frameRect.width*(3.0/4.0)){
+            println("Resizing")
+            var newString : NSString = self.text.stringValue
+            newString = newString.substringWithRange(NSRange(location: 0, length: 20)) + "..."
+            self.text.stringValue = newString as String
+            self.text.frame = NSRect(x:5, y:20, width: frameRect.width*(3.0/4.0), height: frameRect.height-20)
+        }else{
+            self.text.frame = NSRect(x:5, y:20, width: frameRect.width*(3.0/4.0), height: frameRect.height-20)
+        }
+        var dateRect = NSRect(x: 5, y: frameRect.height-20, width: frameRect.width*(3.0/4.0), height: frameRect.height)
+        self.date = NSTextField(frame: dateRect)
+        self.date.font = NSFont(name: "Courier", size: 5)
+        self.date.stringValue = "30/30/30"
+        self.date.editable = false
+        self.date.selectable = false
+        self.date.drawsBackground = false
+        self.date.bezeled = false
+        self.date.sizeToFit()
         
+        println(self.text.stringValue)
         super.init(frame: frameRect)
         
         self.addSubview(text)
+        self.addSubview(date)
         site = NSURL(fileURLWithPath: "http://www.google.com")!
         
-        }
+    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

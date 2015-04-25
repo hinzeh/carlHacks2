@@ -30,8 +30,8 @@ class MasterViewController: NSViewController {
     }
     
     func setupSampleTable() {
-        let item1 = TableItemDoc(title: "Hi1")
-        let item2 = TableItemDoc(title: "Hi2")
+        let item1 = TableItemDoc(title: "http://www.moodle.com")
+        let item2 = TableItemDoc(title: "ThisShouldBeTooLongToCompletelyFitOnTheTableView,ButWeWillSee")
         let item3 = TableItemDoc(title: "Hi3")
         let item4 = TableItemDoc(title: "Hi4")
         let item5 = TableItemDoc(title: "Hi5")
@@ -56,7 +56,6 @@ extension MasterViewController: NSTableViewDataSource {
             if tableColumn!.identifier == "TableColumn" {
                 // 3
                 let tableDoc = self.table[row]
-                cellView.setString(tableDoc.data.title)
                 return cellView
             }
         }
