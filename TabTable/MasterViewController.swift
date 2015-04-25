@@ -30,7 +30,6 @@ class MasterViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadData()
-        self.saveData()
         // Do view setup here.
     }
     
@@ -125,7 +124,7 @@ class MasterViewController: NSViewController {
 // MARK: - NSTableViewDataSource
 extension MasterViewController: NSTableViewDataSource {
     func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
-        return self.table.count+1
+        return self.allToDoItems.count+1
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -153,10 +152,14 @@ extension MasterViewController: DragViewDelegate{
         if (object is String || object is NSString){
             var newItem = ToDoItemObj.init()
             newItem.name = object as! String
+            allToDoItems.append(newItem)
         }else{
-            allToDoItems.append(ToDoItemObj(title: (object as! NSURL).absoluteString!))
+            var newItem = ToDoItemObj.init()
+            newItem.name = (object as! NSURL).absoluteString!
+            allToDoItems.append(newItem)
         }
         tableView.reloadData()
+        self.saveData()
         
     }
 }
