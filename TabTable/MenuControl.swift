@@ -13,12 +13,15 @@ class MenuControl: NSMenu{
     var statusItem: NSStatusItem?;
     var menuClose: NSMenuItem = NSMenuItem()
     var closeNum = 1
+    var dvd :DragViewDelegate
     
     func statusMenuLaunch() {
         // menu stuff
         let bar = NSStatusBar.systemStatusBar()
         let NSVariableStatusItemLength: CGFloat = -1.0
         
+
+
         statusItem = bar.statusItemWithLength(CGFloat(NSVariableStatusItemLength))
         statusItem!.title = "Tab Nab"
         //statusItem!.menu = statusMenu
@@ -28,6 +31,10 @@ class MenuControl: NSMenu{
         //println(menuClose.title)
         //statusMenu.addItem(menuClose)
         statusItem!.action = Selector("trial:")
+        statusItem!.menu = self
+        var menuItem : NSMenuItem = NSMenuItem(title: "Unknown", action: Selector("dostuff"), keyEquivalent: "")
+        menuItem.view = DragView(frame: NSRect(x: 0, y: 0, width: 100, height: 100), newDelegate: self.dvd)
+        self.addItem(menuItem)
         
     }
     
@@ -43,7 +50,8 @@ class MenuControl: NSMenu{
         }
     }
     
-    override init(title aTitle: String) {
+    init(title aTitle: String, thumbkin:DragViewDelegate) {
+        self.dvd = thumbkin
         super.init(title: aTitle)
         self.title = title
         
