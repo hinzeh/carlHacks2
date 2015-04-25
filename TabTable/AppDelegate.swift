@@ -7,9 +7,10 @@
 //
 
 import Cocoa
+import AppKit
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSWindow, NSApplicationDelegate {
     
     @IBOutlet weak var window: NSWindow!
     var masterViewController: MasterViewController!
@@ -25,8 +26,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.menuControl = MenuControl()
         self.menuControl?.statusMenuLaunch()
         // Insert code here to initialize your application
-
     }
+    
+    func windowToFront(){
+        println("Man")
+        self.orderFront(window)
+    }
+
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
