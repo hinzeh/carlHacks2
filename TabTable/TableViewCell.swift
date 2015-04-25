@@ -18,7 +18,7 @@ class TableViewCell : NSTableCellView{
         self.text = NSTextField(frame: textRect)
         self.text.font = NSFont(name: "Courier", size: frameRect.height/2)
         self.text.stringValue = doc.data.title
-        self.text.editable = false
+        self.text.editable = true
         self.text.selectable = false
         self.text.drawsBackground = false
         self.text.bezeled = false
@@ -37,7 +37,11 @@ class TableViewCell : NSTableCellView{
         self.date = NSTextField(frame: dateRect)
         self.date.font = NSFont(name: "Courier", size: frameRect.height/4)
         var today = NSDate(timeIntervalSinceNow: 0)
-//        self.date.stringValue = today.
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/YYYY"
+        var dateString = dateFormatter.stringFromDate(today)
+        self.date.stringValue = dateString
+        
         self.date.editable = false
         self.date.selectable = false
         self.date.drawsBackground = false
