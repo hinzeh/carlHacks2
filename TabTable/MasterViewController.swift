@@ -27,24 +27,33 @@ class MasterViewController: NSViewController {
         println("Table Stuff \(sender.clickedRow)")
     }
     
+    override func keyDown(theEvent: NSEvent) {
+        self.interpretKeyEvents([theEvent])
+        var chars : String = theEvent.characters!
+        if(theEvent.keyCode == 51){
+            println("Delete")
+            var rows = tableView.selectedRowIndexes
+            var toDelete : NSMutableArray = []
+            
+            var offset = 0
+            var stop = allToDoItems.count
+            for item in rows{
+                if item>=stop{
+                    continue
+                }
+                var temp : Int = item
+                allToDoItems.removeAtIndex(temp-offset)
+                offset+=1
+            }
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadData()
+        tableView.allowsMultipleSelection = true
         // Do view setup here.
-    }
-    
-    func getAllToDoItems () -> [ToDoItemObj] {
-        return allToDoItems
-    }
-    
-    func setupSampleTable() {
-        let item1 = TableItemDoc(title: "http://www.moodle.com")
-        let item2 = TableItemDoc(title: "ThisShouldBeTooLongToCompletelyFitOnTheTableView,ButWeWillSee")
-        let item3 = TableItemDoc(title: "Hi3")
-        let item4 = TableItemDoc(title: "Hi4")
-        let item5 = TableItemDoc(title: "Hi5")
-        let item6 = TableItemDoc(title: "Hi6")
-        table = [item1, item2,item3,item4,item5,item6]
     }
     
     func loadData() {
@@ -120,7 +129,7 @@ class MasterViewController: NSViewController {
         println("Saved data.plist file is --> \(resultDictionary?.description)")
         //var unwrappedResultDict = ToDoItemObj(dict: resultDictionary!)
     }
-
+    
     
     
 }
@@ -133,7 +142,7 @@ extension MasterViewController: NSTableViewDataSource {
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         // 1
-//        var cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
+        //        var cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         if (row != self.allToDoItems.count){
             var cellView = TableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50),doc: self.allToDoItems[row], newDelegate: self)
             if tableColumn!.identifier == "TableColumn" {
@@ -169,12 +178,11 @@ extension MasterViewController: DragViewDelegate{
 }
 
 extension MasterViewController: TableViewCellDelegate{
-    func deleteTableViewCell(object: AnyObject){
-        var index = find(allToDoItems, object as! ToDoItemObj)
-        self.allToDoItems.removeAtIndex(index!)
-        tableView.reloadData()
-        self.saveData()
+        func deleteTableViewCell(object: AnyObject){
+            var index = find(allToDoItems, object as! ToDoItemObj)
+            self.allToDoItems.removeAtIndex(index!)
+            tableView.reloadData()
+            self.saveData()
+        }
     }
-}
-    
 
