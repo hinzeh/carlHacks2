@@ -15,6 +15,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem?;
     var masterViewController: MasterViewController!
 
+    // Unknown functionality... good luck...
+    var button: NSStatusBarButton?
+    override func awakeFromNib() {
+        let NSVariableStatusItemLength: CGFloat = -1.0
+        
+        self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+        self.button = self.statusItem?.button
+        self.button?.title = "Press Me"
+        self.button?.action = "pressed"
+        self.button?.target = self
+    }
+    
+    func pressed(sender : AnyObject) {
+        println("Pressed")
+    }
+    
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         masterViewController = MasterViewController(nibName: "MasterViewController", bundle: nil)
