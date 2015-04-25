@@ -28,14 +28,16 @@ class TableViewCell : NSTableCellView{
             var newString : NSString = self.text.stringValue
             newString = newString.substringWithRange(NSRange(location: 0, length: 20)) + "..."
             self.text.stringValue = newString as String
-            self.text.frame = NSRect(x:5, y:20, width: frameRect.width*(3.0/4.0), height: frameRect.height-20)
+            self.text.frame = NSRect(x:5, y:frameRect.height/2-10, width: frameRect.width*(3.0/4.0), height: frameRect.height/2+10)
         }else{
-            self.text.frame = NSRect(x:5, y:20, width: frameRect.width*(3.0/4.0), height: frameRect.height-20)
+            self.text.frame = NSRect(x:5, y:frameRect.height/2-10, width: frameRect.width*(3.0/4.0), height: frameRect.height/2+10)
         }
-        var dateRect = NSRect(x: 5, y: frameRect.height-20, width: frameRect.width*(3.0/4.0), height: frameRect.height)
+        println(frameRect.height)
+        var dateRect = NSRect(x: 5, y: 5, width: frameRect.width*(3.0/4.0), height: frameRect.height)
         self.date = NSTextField(frame: dateRect)
-        self.date.font = NSFont(name: "Courier", size: 5)
-        self.date.stringValue = "30/30/30"
+        self.date.font = NSFont(name: "Courier", size: frameRect.height/4)
+        var today = NSDate(timeIntervalSinceNow: 0)
+//        self.date.stringValue = today.
         self.date.editable = false
         self.date.selectable = false
         self.date.drawsBackground = false
