@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MenuControl: NSMenu{
+class MenuControl: NSMenu {
     @IBOutlet var statusMenu: NSMenu! = NSMenu();
     var statusItem: NSStatusItem?;
     var menuClose: NSMenuItem = NSMenuItem()
@@ -19,8 +19,6 @@ class MenuControl: NSMenu{
         // menu stuff
         let bar = NSStatusBar.systemStatusBar()
         let NSVariableStatusItemLength: CGFloat = -1.0
-        
-
 
         statusItem = bar.statusItemWithLength(CGFloat(NSVariableStatusItemLength))
         statusItem!.title = "Tab Nab"
@@ -30,17 +28,18 @@ class MenuControl: NSMenu{
         //menuClose.title = "close"
         //println(menuClose.title)
         //statusMenu.addItem(menuClose)
-        statusItem!.action = Selector("trial:")
-        statusItem!.menu = self
-        var menuItem : NSMenuItem = NSMenuItem(title: "Unknown", action: Selector("dostuff"), keyEquivalent: "")
+        //statusItem!.action = Selector("trial:")
+        //statusItem!.menu = self
+        
+        /*var menuItem : NSMenuItem = NSMenuItem(title: "Unknown", action: Selector("dostuff"), keyEquivalent: "")
         menuItem.view = DragView(frame: NSRect(x: 0, y: 0, width: 100, height: 100), newDelegate: self.dvd)
-        self.addItem(menuItem)
+        self.addItem(menuClose) */
         
     }
     
-    @IBAction func trial(sender: NSObject){
-        println("Yo")
-    }
+//    @IBAction func trial(sender: NSObject){
+//        println("Yo")
+//    }
     
     override func performActionForItemAtIndex(index: Int) {
         if (index == closeNum){
