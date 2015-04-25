@@ -27,7 +27,8 @@ class TableViewCell : NSTableCellView{
         self.addSubview(text)
         site = NSURL(fileURLWithPath: "http://www.google.com")!
         
-        
+        self.accessoryType = Disclo
+        UITableViewCellAccessoryDisclosureIndicator
         }
 
     required init?(coder: NSCoder) {
