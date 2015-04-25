@@ -11,18 +11,40 @@ import Cocoa
 
 class DragView: NSImageView, NSDraggingDestination{
 
+    var highlight : Bool
+    
     required init?(coder: NSCoder) {
+        self.highlight = false
         super.init(coder: coder)
         self.registerForDraggedTypes([NSURLPboardType,NSStringPboardType])//NSImage.imagePasteboardTypes())
-        println(self.registeredDraggedTypes)
+    }
+    override init(frame frameRect: NSRect) {
+        self.highlight = false
+        super.init(frame: frameRect)
+        self.registerForDraggedTypes([NSURLPboardType,NSStringPboardType])//NSImage.imagePasteboardTypes())
+
+    }
+    
+    override func drawRect(dirtyRect: NSRect) {
+        super.drawRect(dirtyRect)
+        if ( highlight ) {
+            //highlight by overlaying a gray border
+            NSColor.grayColor().set()
+            NSBezierPath.setDefaultLineWidth(5)
+            NSBezierPath.strokeRect(dirtyRect)
+        }
     }
     
     override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
         println("Dragging Enter")
+        self.highlight = true
+        self.setNeedsDisplay()
         return NSDragOperation.Generic
     }
     override func draggingExited(sender: NSDraggingInfo?) {
         println("Dragging Exit")
+        self.highlight = false
+        self.setNeedsDisplay()
         return
     }
     override func prepareForDragOperation(sender: NSDraggingInfo) -> Bool {
@@ -33,16 +55,18 @@ class DragView: NSImageView, NSDraggingDestination{
             //Do shenanigans with the dragged thing(s)
             println(temp)
         }
+        self.highlight = false
+        self.setNeedsDisplay()
         return true
     }
     override func performDragOperation(sender: NSDraggingInfo) -> Bool {
         return true
     }
 
-    func windowWillUseStandardFrame(window : NSWindow, newFrame : NSRect) -> NSWindow{
-        var contentRect:NSRect = self.window!.frame
-        contentRect.size = self.window!.frame.size
-        return NSWindow(contentRect: contentRect, styleMask: window.styleMask, backing: NSBackingStoreType.Retained, defer:false)
-    }
+//    func windowWillUseStandardFrame(window : NSWindow, newFrame : NSRect) -> NSWindow{
+//        var contentRect:NSRect = self.window!.frame
+//        contentRect.size = self.window!.frame.size
+//        return NSWindow(contentRect: contentRect, styleMask: window.styleMask, backing: NSBackingStoreType.Retained, defer:false)
+//    }
 }
 

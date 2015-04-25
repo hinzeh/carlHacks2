@@ -32,13 +32,13 @@ extension MasterViewController: NSTableViewDataSource {
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
         // 1
-        var cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
-        
+//        var cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
+        var cellView = TableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50), id: "Temp")
         // 2
         if tableColumn!.identifier == "TableColumn" {
             // 3
             let tableDoc = self.table[row]
-            cellView.textField!.stringValue = tableDoc.data.title
+            cellView.setString(tableDoc.data.title)
             return cellView
         }
         
