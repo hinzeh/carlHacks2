@@ -129,7 +129,6 @@ class TableViewCell : NSTableCellView{
     }
     
     func deleteAction(obj:AnyObject?){
-        
         delegate.deleteTableViewCell(self.doc)
     }
     
