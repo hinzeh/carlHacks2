@@ -44,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let NSVariableStatusItemLength: CGFloat = -1.0
         
         statusItem = bar.statusItemWithLength(CGFloat(NSVariableStatusItemLength))
-        statusItem!.title = "Status Menu"
+        statusItem!.title = "Tab Nab"
         statusItem!.menu = statusMenu
         statusItem!.highlightMode = true
         // Insert code here to initialize your application
