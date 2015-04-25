@@ -15,7 +15,7 @@ class TableViewCell : NSTableCellView{
     override init(frame frameRect:NSRect) {
         var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
         self.text = NSTextField(frame: textRect)
-        self.text.font = NSFont(name: "Futura", size: frameRect.height-20)
+        self.text.font = NSFont(name: "Helvetica Neue", size: frameRect.height-20)
         self.text.stringValue = "HI"
         self.text.editable = false
         self.text.selectable = false
