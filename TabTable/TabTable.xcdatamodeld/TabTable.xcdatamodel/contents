@@ -6,8 +6,15 @@
         <attribute name="linkList" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TableDataFolder" inverseName="item" inverseEntity="TableDataFolder" syncable="YES"/>
+    </entity>
+    <entity name="TableDataFolder" representedClassName="PRODUCT_MODULE_NAME.TableDataFolder" syncable="YES">
+        <attribute name="tableDataArray" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TableDataFolder" inverseName="folder" inverseEntity="TableDataFolder" syncable="YES"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TableData" inverseName="folder" inverseEntity="TableData" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TableData" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="TableData" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="TableDataFolder" positionX="-54" positionY="27" width="128" height="90"/>
     </elements>
 </model>
