@@ -33,6 +33,10 @@ class MasterViewController: NSViewController {
         // Do view setup here.
     }
     
+    func getAllToDoItems () -> [ToDoItemObj] {
+        return allToDoItems
+    }
+    
     func setupSampleTable() {
         let item1 = TableItemDoc(title: "http://www.moodle.com")
         let item2 = TableItemDoc(title: "ThisShouldBeTooLongToCompletelyFitOnTheTableView,ButWeWillSee")
