@@ -9,5 +9,13 @@
 import Cocoa
 
 class TableItemDoc: NSObject {
-
+    var data: TableItemData
+    
+    override init() {
+        self.data = TableItemData()
+    }
+    
+    init(title: String) {
+        self.data = TableItemData(title: title)
+    }
 }

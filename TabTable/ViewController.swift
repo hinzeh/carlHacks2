@@ -15,4 +15,8 @@ class ViewController: NSViewController {
         // Do view setup here.
     }
     
+    override var representedObject: AnyObject? {
+        didSet{
+        }
+    }
 }
