@@ -27,4 +27,14 @@ class MenuControl: NSMenu {
         statusMenu.addItem(menuItem)
 
     }
+    
+    override init(title aTitle: String) {
+        super.init(title: aTitle)
+        self.title = title
+        
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
