@@ -22,7 +22,6 @@ class DragView: NSImageView, NSDraggingDestination{
         self.highlight = false
         super.init(frame: frameRect)
         self.registerForDraggedTypes([NSURLPboardType,NSStringPboardType])//NSImage.imagePasteboardTypes())
-        self.image = NSImage(contentsOfFile: "plus")
     }
     
     override func drawRect(dirtyRect: NSRect) {
@@ -46,6 +45,25 @@ class DragView: NSImageView, NSDraggingDestination{
             NSBezierPath.setDefaultLineWidth(5)
             NSBezierPath.strokeRect(dirtyRect)
         }
+
+//        self.image = NSImage(named: "smallplus")
+        var plus = NSImage(named:"smallplus")
+        self.image = plus
+        var ratio = plus!.size.height/dirtyRect.size.height
+        var newSize = NSMakeSize(ratio*plus!.size.width, ratio*plus!.size.height)
+        var newRect = NSZeroRect
+        newRect.size = newSize
+        newRect.origin = NSPoint(x:dirtyRect.width/2-newSize.width/2, y:dirtyRect.height/2-newSize.height/2)
+        
+        
+        var imageRect = NSZeroRect
+        imageRect.size = self.image!.size
+        imageRect.origin = NSZeroPoint
+        
+//        newRect.origin.y = vSize.height/2-previewSize.height/2
+//        newRect.size = previewImage.size
+        self.image!.drawInRect(newRect, fromRect: imageRect, operation: NSCompositingOperation.CompositeSourceOver, fraction: 1.0)
+
     }
     
     override func draggingEntered(sender: NSDraggingInfo) -> NSDragOperation {
