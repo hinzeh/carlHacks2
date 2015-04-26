@@ -203,6 +203,19 @@ extension MasterViewController: TableViewCellDelegate{
     }
     
     func deleteTableViewCell(object: AnyObject){
+        var newobj=object as! ToDoItemObj
+        if (newobj.name.rangeOfString(".") != nil){
+            for var i = 0; i<self.allToDoItems.count; ++i{
+                if(newobj.priority == allToDoItems[i].name){
+                    for var j = 0; j<allToDoItems[i].linkArray.count; ++j{
+                        if (allToDoItems[i].linkArray[j] == newobj.name){
+                            allToDoItems[i].linkArray.removeAtIndex(j)
+                        }
+                        
+                    }
+                }
+            }
+        }
         println("I am in deleteTableView")
         var index = find(allToDoItems, object as! ToDoItemObj)
         self.allToDoItems.removeAtIndex(index!)
