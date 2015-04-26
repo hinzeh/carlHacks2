@@ -49,7 +49,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         self.title = doc.name
         var textRect = NSRect(x: 5, y: heightVar, width: frameRect.width/2, height: 50)
         self.text = NSTextField(frame: textRect)
-        self.text.font = NSFont(name: "Lucida Sans Unicode", size: textSize)
+        self.text.font = NSFont(name: "Tahoma", size: textSize)
         self.text.stringValue = doc.name
         self.text.editable = true
         self.text.selectable = true
@@ -69,7 +69,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         println(frameRect.height)
         var dateRect = NSRect(x: 5, y: heightVar-45, width: frameRect.width*(3.0/4.0), height: textRect.height)
         self.date = NSTextField(frame: dateRect)
-        self.date.font = NSFont(name: "Lucida Sans Unicode", size: 9)
+        self.date.font = NSFont(name: "Tahoma", size: 9)
         var today = NSDate(timeIntervalSinceNow: 0)
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/YYYY"
