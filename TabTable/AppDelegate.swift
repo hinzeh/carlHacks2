@@ -38,5 +38,9 @@ class AppDelegate: NSWindow, NSApplicationDelegate {
         // Insert code here to tear down your application
         masterViewController.saveData()
     }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+        return true
+    }
 }
 

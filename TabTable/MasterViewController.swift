@@ -16,7 +16,10 @@ class MasterViewController: NSViewController {
         var flags = NSEvent.modifierFlags()
         if(flags == .ShiftKeyMask){
             //do something to get url from table item
-            NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.google.com")!)
+            
+            //NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.google.com")!)
+            var currentLink = allToDoItems[sender.clickedRow].name
+            NSWorkspace.sharedWorkspace().openURL(NSURL(string: currentLink)!)
         }
         if (sender.clickedRow==self.allToDoItems.count){
             //last item
