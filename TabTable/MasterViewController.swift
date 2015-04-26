@@ -55,6 +55,7 @@ class MasterViewController: NSViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.saveData()
         self.loadData()
         tableView.allowsMultipleSelection = true
         tableView.doubleAction = Selector ("doubleClicked")
@@ -134,7 +135,6 @@ class MasterViewController: NSViewController{
         }
         
         dict = ["allToDoItems" : allItemDictArray]
-        
         dict.writeToFile(path, atomically: false)
         let resultDictionary = NSMutableDictionary(contentsOfFile: path)
         println("Saved data.plist file is --> \(resultDictionary?.description)")
@@ -195,9 +195,6 @@ extension MasterViewController: TableViewCellDelegate{
         var heightVar: CGFloat = 50.0
         if(row<self.allToDoItems.count){
             var rowItem=self.allToDoItems[row]
-            if(self.allToDoItems[row].boolExpanded){
-                heightVar=CGFloat(rowItem.linkArray.count) * 30.0 + 50.0
-            }
             
         }
         return heightVar
@@ -218,6 +215,25 @@ extension MasterViewController: TableViewCellDelegate{
         //self.saveData()
         tableView.reloadData()
         
+    }
+    func addUrlCells(object: AnyObject){
+        var urls = (object as! ToDoItemObj).linkArray
+        var index = find(allToDoItems, object as! ToDoItemObj)
+        for var i = 0; i<urls.count; ++i{
+            var newObj = ToDoItemObj(name: urls[i], priority: object.name, linkArray: [])
+            self.allToDoItems.insert(newObj, atIndex: index!+i+1)
+        }
+    }
+    func deleteUrlCells(object: AnyObject){
+        for var i = allToDoItems.count-1; i > -1; --i {
+            if (allToDoItems[i].priority == (object as! ToDoItemObj).name){
+                if (allToDoItems[i].name != object.name){
+                    allToDoItems.removeAtIndex(i)
+                }
+            }
+        }
+        self.saveData()
+        tableView.reloadData()
     }
 
     }

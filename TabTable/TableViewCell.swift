@@ -13,6 +13,8 @@ import AppKit
 protocol TableViewCellDelegate{
     func deleteTableViewCell(object:AnyObject)
     func refreshTableViewCell(object:AnyObject)
+    func addUrlCells(object: AnyObject)
+    func deleteUrlCells(object: AnyObject)
 }
 
 class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditingDelegate{
@@ -30,10 +32,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         self.doc=doc
         self.delegate=newDelegate
         var heightVar: CGFloat
-         heightVar=50.0
-        if (self.doc.boolExpanded){
-            heightVar=CGFloat(self.doc.linkArray.count)*30+50
-        }
+        heightVar=50.0
         println("heightVar is \(heightVar)")
        
         self.doc=doc
@@ -155,13 +154,14 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         println("button press is: \(buttonPress)")
         println("boolExpanded is: \(self.doc.boolExpanded)")
         if (self.doc.boolExpanded){
-            self.doc.boolExpanded=false
+            delegate.deleteUrlCells(self.doc)
             buttonPress=false
-            
+            self.doc.boolExpanded=false
         }
         else{
-            self.doc.boolExpanded=true
+            delegate.addUrlCells(self.doc)
             buttonPress=true
+            self.doc.boolExpanded=true
             
         }
         
