@@ -17,24 +17,7 @@ class MenuControl: NSMenu {
     var window :NSWindow
     
     func statusMenuLaunch() {
-        // menu stuff
-//        var bar = NSStatusBar.systemStatusBar()
-//        let NSVariableStatusItemLength: CGFloat = -1.0
-//
-//        statusItem = bar.statusItemWithLength(CGFloat(NSVariableStatusItemLength))
-//        statusItem!.title = "Tab Nab"
-//        //statusItem!.menu = statusMenu
-//        statusItem!.highlightMode = true
-//        
-//        
-//        //menuClose.title = "close"
-//        //println(menuClose.title)
-//        //statusMenu.addItem(menuClose)
-//        //statusItem!.menu = self
-//        
-//        /*var menuItem : NSMenuItem = NSMenuItem(title: "Unknown", action: Selector("dostuff"), keyEquivalent: "")
-//        menuItem.view = DragView(frame: NSRect(x: 0, y: 0, width: 100, height: 100), newDelegate: self.dvd)
-//        self.addItem(menuClose) */
+
         statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(CGFloat(59))
         statusItem.button!.title = "Tab Nab"
         statusItem.button!.appearsDisabled = false
