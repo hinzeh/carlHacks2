@@ -175,6 +175,11 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
     func deleteAction(obj:AnyObject?){
         delegate.deleteTableViewCell(self.doc)
     }
+    
+    func addExpandView(frameRect: NSRect){
+        var size = self.doc.linkArray.count
+        
+    }
 }
 
 extension TableViewCell: DragViewDelegate{
