@@ -15,7 +15,7 @@ protocol TableViewCellDelegate{
     func refreshTableViewCell(object:AnyObject)
 }
 
-class TableViewCell : NSTableCellView, NSTextFieldDelegate{
+class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditingDelegate{
     var text: NSTextField
     var date: NSTextField
     var site: NSURL = NSURL()
@@ -96,7 +96,6 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate{
         self.deleteButton.target = self
 
         self.text.delegate = self
-
         self.addSubview(text)
         self.addSubview(date)
         self.addSubview(button)
@@ -104,7 +103,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate{
         site = NSURL(fileURLWithPath: "http://www.google.com")!
         
     }
-
+    
     override func controlTextDidBeginEditing(obj: NSNotification) {
         self.text.stringValue = self.title as String
     }
