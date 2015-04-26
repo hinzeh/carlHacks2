@@ -24,6 +24,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
     var button: NSButton
     var deleteButton: NSButton
     var buttonPress: Bool=false
+    var colorChange: Bool = false
     var delegate : TableViewCellDelegate
     var doc: ToDoItemObj
 //    var dropZone : DragView
@@ -139,11 +140,20 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         bPath.lineWidth = 3
         NSColor(red: 0.13, green: 0.70, blue: 1, alpha: 1).set()
         bPath.stroke()
-        var gradient:NSGradient = NSGradient(colorsAndLocations:
-            (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.25),0.0),
-            (NSColor(red: 0.0, green: 0.1, blue: 1.0, alpha: 0.25),1))
+        if colorChange{
+            var gradient:NSGradient = NSGradient(colorsAndLocations:
+                (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.25),0.0),
+                (NSColor(red: 0.0, green: 0.1, blue: 1.0, alpha: 0.25),1))
+            gradient.drawInBezierPath(bPath, angle: 90.0)
 
-        gradient.drawInBezierPath(bPath, angle: 90.0)
+        }else{
+            var gradient:NSGradient = NSGradient(colorsAndLocations:
+            (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.25),0.0),
+            (NSColor(red: 0.0, green: 0.7, blue: 0.2, alpha: 0.25),1))
+            gradient.drawInBezierPath(bPath, angle: 90.0)
+
+        }
+
     }
     func setString(text:String){
         self.text.stringValue = text
@@ -179,6 +189,15 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
     func addExpandView(frameRect: NSRect){
         var size = self.doc.linkArray.count
         
+    }
+    
+    func changeColor(){
+        if(colorChange){
+            colorChange = false
+        }else{
+            colorChange = true
+        }
+        self.needsDisplay()
     }
 }
 
