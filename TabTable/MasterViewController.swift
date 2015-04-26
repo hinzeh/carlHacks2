@@ -56,7 +56,7 @@ class MasterViewController: NSViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.saveData()
+        //self.saveData()
         self.loadData()
         tableView.allowsMultipleSelection = true
         tableView.doubleAction = Selector ("doubleClicked")
@@ -153,9 +153,11 @@ extension MasterViewController: NSTableViewDataSource {
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        // 1
-        //        var cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
-        if (row != self.allToDoItems.count){
+        var mydepth: Int = 0
+            if (row != self.allToDoItems.count){
+                if (self.allToDoItems[row].priority != self.allToDoItems[row].name){
+                    mydepth=1
+                }
             var rowAllToDo: ToDoItemObj=self.allToDoItems[row]
                 var cellView = TableViewCell(tableColumnWidth: tableColumn!.width, doc: self.allToDoItems[row], newDelegate: self)
             if tableColumn!.identifier == "TableColumn" {
@@ -164,7 +166,7 @@ extension MasterViewController: NSTableViewDataSource {
                 return cellView
             }
         }
-        return AddTableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50),parent: self)
+        return AddTableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50),parent: self, depth: mydepth)
     }
 }
 
