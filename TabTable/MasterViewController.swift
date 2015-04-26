@@ -164,10 +164,12 @@ extension MasterViewController: DragViewDelegate{
         if (object is String || object is NSString){
             var newItem = ToDoItemObj.init()
             newItem.name = object as! String
+            newItem.linkArray.append(object as! String)
             allToDoItems.append(newItem)
         }else{
             var newItem = ToDoItemObj.init()
             newItem.name = (object as! NSURL).absoluteString!
+            newItem.linkArray.append((object as! NSURL).absoluteString!)
             allToDoItems.append(newItem)
         }
         tableView.reloadData()
