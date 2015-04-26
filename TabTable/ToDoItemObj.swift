@@ -15,6 +15,7 @@ class ToDoItemObj: NSObject {
     //var creationDate: NSDate
     //var dueDate: NSDate
     var linkArray: [String]
+    var boolExpanded: Bool
     
     override init() {
         self.name = String()
@@ -22,6 +23,7 @@ class ToDoItemObj: NSObject {
         //self.creationDate = NSDate()
         //self.dueDate = NSDate()
         self.linkArray = [String]()
+        self.boolExpanded=false
     }
     
     init(name: String, priority: Int, /*creationDate: NSDate, dueDate: NSDate,*/ linkArray: [String]) {
@@ -30,6 +32,7 @@ class ToDoItemObj: NSObject {
         //self.creationDate = creationDate
         //self.dueDate = dueDate
         self.linkArray = linkArray
+        self.boolExpanded=false
     }
     
     init(dict: NSMutableDictionary) {
@@ -39,6 +42,7 @@ class ToDoItemObj: NSObject {
         self.name = ""
         self.priority = -1
         self.linkArray = []
+        self.boolExpanded=false
         
         for key in keys{
             self.name = key as! String
@@ -50,7 +54,7 @@ class ToDoItemObj: NSObject {
     
     func toDict() -> NSMutableDictionary{
         var dict: NSMutableDictionary
-        dict = [self.name : [self.name, self.priority, /*self.creationDate, self.dueDate, */self.linkArray]]
+        dict = [self.name : [self.name, self.priority, /*self.creationDate, self.dueDate, */self.linkArray, self.boolExpanded]]
         return dict
     }
 

@@ -12,6 +12,7 @@ import AppKit
 
 protocol TableViewCellDelegate{
     func deleteTableViewCell(object:AnyObject)
+    func refreshTableViewCell(object:AnyObject)
 }
 
 class TableViewCell : NSTableCellView{
@@ -24,9 +25,17 @@ class TableViewCell : NSTableCellView{
     var delegate : TableViewCellDelegate
     var doc: ToDoItemObj
 
-    init(frame frameRect:NSRect, doc:ToDoItemObj, newDelegate:TableViewCellDelegate) {
+    init(tableColumnWidth: CGFloat, doc:ToDoItemObj, newDelegate:TableViewCellDelegate) {
         self.doc=doc
         self.delegate=newDelegate
+        var heightVar: CGFloat
+        heightVar=50.0
+        if (doc.boolExpanded){
+            heightVar=CGFloat(self.doc.linkArray.count)*30.0 + 50.0
+        }
+        self.doc=doc
+        var frameRect = NSRect(x: 0, y: 0, width:tableColumnWidth, height: heightVar)
+        
         var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
         self.text = NSTextField(frame: textRect)
         self.text.font = NSFont(name: "Courier", size: frameRect.height/2)
@@ -65,7 +74,7 @@ class TableViewCell : NSTableCellView{
         self.button=NSButton(frame: buttonRect)
         self.button.bezelStyle = NSBezelStyle.SmallSquareBezelStyle
         self.button.title="▾"
-        self.button.action = "myAction:"
+        self.button.action = "expandAction:"
         
         
         let utf8 : [UInt8]=[0xE2, 0x9C, 0x98, 0]
@@ -114,28 +123,28 @@ class TableViewCell : NSTableCellView{
         
     }
     
-    func myAction(obj:AnyObject?){
-        var testArr: Array<String>
-        testArr=Array()
-        testArr.append("hey")
-        testArr.append("hey again")
-        if buttonPress{
+    func expandAction(obj:AnyObject?){
+        println("button press is: \(buttonPress)")
+        println("boolExpanded is: \(self.doc.boolExpanded)")
+        if (self.doc.boolExpanded){
+            self.doc.boolExpanded=false
             buttonPress=false
+            
         }
-        if !buttonPress{
+        else{
+            self.doc.boolExpanded=true
             buttonPress=true
-            showURLS(testArr)
+            
         }
+        
+        println("middle button press is: \(buttonPress)")
+        println("middle boolExpanded is: \(self.doc.boolExpanded)")
+        delegate.refreshTableViewCell(self.doc)
+        println("after button press is: \(buttonPress)")
+        println("after boolExpanded is: \(self.doc.boolExpanded)")
     }
     
     func deleteAction(obj:AnyObject?){
         delegate.deleteTableViewCell(self.doc)
-    }
-    
-    func showURLS(urlArray: Array<String>){
-        var url: String
-        for url: String in urlArray{
-            
-        }
     }
 }

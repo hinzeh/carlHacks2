@@ -143,7 +143,8 @@ extension MasterViewController: NSTableViewDataSource {
         // 1
         //        var cellView: NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
         if (row != self.allToDoItems.count){
-            var cellView = TableViewCell(frame: NSRect(x: 0, y: 0, width: tableColumn!.width, height: 50),doc: self.allToDoItems[row], newDelegate: self)
+            var rowAllToDo: ToDoItemObj=self.allToDoItems[row]
+                var cellView = TableViewCell(tableColumnWidth: tableColumn!.width, doc: self.allToDoItems[row], newDelegate: self)
             if tableColumn!.identifier == "TableColumn" {
                 // 3
                 let tableDoc = self.allToDoItems[row]
@@ -177,11 +178,34 @@ extension MasterViewController: DragViewDelegate{
 }
 
 extension MasterViewController: TableViewCellDelegate{
-        func deleteTableViewCell(object: AnyObject){
-            var index = find(allToDoItems, object as! ToDoItemObj)
-            self.allToDoItems.removeAtIndex(index!)
-            tableView.reloadData()
-            self.saveData()
+    func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat{
+        var heightVar: CGFloat = 50.0
+        if(row<self.allToDoItems.count){
+            var rowItem=self.allToDoItems[row]
+            if(self.allToDoItems[row].boolExpanded){
+                heightVar=CGFloat(rowItem.linkArray.count) * 30.0 + 50.0
+            }
+            
         }
+        return heightVar
+    }
+    
+    func deleteTableViewCell(object: AnyObject){
+        println("I am in deleteTableView")
+        var index = find(allToDoItems, object as! ToDoItemObj)
+        self.allToDoItems.removeAtIndex(index!)
+        self.saveData()
+        tableView.reloadData()
+        
+    }
+    func refreshTableViewCell(object: AnyObject){
+        println("I am in refreshTableView")
+        //var index = find(allToDoItems, object as! ToDoItemObj)
+        //self.allToDoItems.removeAtIndex(index!)
+        //self.saveData()
+        tableView.reloadData()
+        
+    }
+
     }
 
