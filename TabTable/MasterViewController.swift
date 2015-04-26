@@ -56,7 +56,6 @@ class MasterViewController: NSViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.saveData()
         self.loadData()
         tableView.allowsMultipleSelection = true
         tableView.doubleAction = Selector ("doubleClicked")
