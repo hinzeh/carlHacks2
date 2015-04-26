@@ -55,7 +55,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         self.text.selectable = true
         self.text.drawsBackground = false
         self.text.bezeled = false
-        self.text.textColor = NSColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        //self.text.textColor = NSColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.text.sizeToFit()
         if (self.text.frame.width>frameRect.width*(3.0/4.0)){
             println("Resizing")
