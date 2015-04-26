@@ -15,7 +15,7 @@ protocol TableViewCellDelegate{
     func refreshTableViewCell(object:AnyObject)
 }
 
-class TableViewCell : NSTableCellView{
+class TableViewCell : NSTableCellView, NSTextFieldDelegate{
     var text: NSTextField
     var date: NSTextField
     var site: NSURL = NSURL()
@@ -24,7 +24,7 @@ class TableViewCell : NSTableCellView{
     var buttonPress: Bool=false
     var delegate : TableViewCellDelegate
     var doc: ToDoItemObj
-
+    var title : NSString = ""
     init(tableColumnWidth: CGFloat, doc:ToDoItemObj, newDelegate:TableViewCellDelegate) {
         self.doc=doc
         self.delegate=newDelegate
@@ -35,7 +35,7 @@ class TableViewCell : NSTableCellView{
         }
         self.doc=doc
         var frameRect = NSRect(x: 0, y: 0, width:tableColumnWidth, height: heightVar)
-        
+        self.title = doc.name
         var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
         self.text = NSTextField(frame: textRect)
         self.text.font = NSFont(name: "Courier", size: frameRect.height/2)
@@ -91,7 +91,8 @@ class TableViewCell : NSTableCellView{
         self.button.target = self
         self.deleteButton.target = self
 
-        
+        self.text.delegate = self
+
         self.addSubview(text)
         self.addSubview(date)
         self.addSubview(button)
@@ -100,6 +101,25 @@ class TableViewCell : NSTableCellView{
         
     }
 
+    override func controlTextDidBeginEditing(obj: NSNotification) {
+        self.text.stringValue = self.title as String
+    }
+    override func controlTextDidEndEditing(obj: NSNotification) {
+        if(self.text.stringValue != self.title){
+            self.title = self.text.stringValue
+            self.doc.name = self.text.stringValue
+        }
+        self.text.sizeToFit()
+        if (self.text.frame.width>self.frame.width*(3.0/4.0)){
+            println("Resizing")
+            var newString : NSString = self.text.stringValue
+            newString = newString.substringWithRange(NSRange(location: 0, length: 20)) + "..."
+            self.text.stringValue = newString as String
+            self.text.frame = NSRect(x:5, y:self.frame.height/2-10, width: self.frame.width*(3.0/4.0), height: self.frame.height/2+10)
+        }else{
+            self.text.frame = NSRect(x:5, y:self.frame.height/2-10, width: self.frame.width*(3.0/4.0), height: self.frame.height/2+10)
+        }
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
