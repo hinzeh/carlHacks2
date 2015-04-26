@@ -26,7 +26,6 @@ class AddTableViewCell : NSTableCellView{
         
         self.addSubview(dropZone)
         
-        
     }
     
     required init?(coder: NSCoder) {
