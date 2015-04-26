@@ -17,8 +17,6 @@
 		F6FF4FAB1AEB5DEE00D3F535 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6FF4FAA1AEB5DEE00D3F535 /* Images.xcassets */; };
 		F6FF4FAE1AEB5DEE00D3F535 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FF4FAC1AEB5DEE00D3F535 /* MainMenu.xib */; };
 		F6FF4FBA1AEB5DEE00D3F535 /* TabTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FB91AEB5DEE00D3F535 /* TabTableTests.swift */; };
-		F6FF4FC61AEB5E4F00D3F535 /* TableItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FC51AEB5E4F00D3F535 /* TableItemData.swift */; };
-		F6FF4FC81AEB5E6000D3F535 /* TableItemDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FC71AEB5E6000D3F535 /* TableItemDoc.swift */; };
 		F6FF4FCB1AEB5E8F00D3F535 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FC91AEB5E8F00D3F535 /* MasterViewController.swift */; };
 		F6FF4FCC1AEB5E8F00D3F535 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FF4FCA1AEB5E8F00D3F535 /* MasterViewController.xib */; };
 		F6FF4FCE1AEB5EAA00D3F535 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FF4FCD1AEB5EAA00D3F535 /* ViewController.swift */; };
@@ -49,8 +47,6 @@
 		F6FF4FB31AEB5DEE00D3F535 /* TabTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TabTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FF4FB81AEB5DEE00D3F535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6FF4FB91AEB5DEE00D3F535 /* TabTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTableTests.swift; sourceTree = "<group>"; };
-		F6FF4FC51AEB5E4F00D3F535 /* TableItemData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableItemData.swift; sourceTree = "<group>"; };
-		F6FF4FC71AEB5E6000D3F535 /* TableItemDoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableItemDoc.swift; sourceTree = "<group>"; };
 		F6FF4FC91AEB5E8F00D3F535 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		F6FF4FCA1AEB5E8F00D3F535 /* MasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasterViewController.xib; sourceTree = "<group>"; };
 		F6FF4FCD1AEB5EAA00D3F535 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -137,8 +133,6 @@
 				F6FF4FAC1AEB5DEE00D3F535 /* MainMenu.xib */,
 				F6FF4FA51AEB5DEE00D3F535 /* AppDelegate.swift */,
 				1EA54B151AEC046500CDDBCF /* MenuControl.swift */,
-				F6FF4FA71AEB5DEE00D3F535 /* TabTable.xcdatamodeld */,
-				F627BEF31AEBE60600ECE810 /* TableData.swift */,
 				F6FF4FC91AEB5E8F00D3F535 /* MasterViewController.swift */,
 				3DD57E7E1AEBEA6200FCFFED /* TableViewCell.swift */,
 				F6FF4FCA1AEB5E8F00D3F535 /* MasterViewController.xib */,
@@ -150,8 +144,6 @@
 		F6FF4FC41AEB5E0100D3F535 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F6FF4FC51AEB5E4F00D3F535 /* TableItemData.swift */,
-				F6FF4FC71AEB5E6000D3F535 /* TableItemDoc.swift */,
 				3DD57E8A1AEC370A00FCFFED /* ToDoItemObj.swift */,
 				3DD57E8B1AEC370A00FCFFED /* ToDoItems.plist */,
 			);
@@ -270,10 +262,8 @@
 				F6FF4FCB1AEB5E8F00D3F535 /* MasterViewController.swift in Sources */,
 				3DD57E7F1AEBEA6200FCFFED /* TableViewCell.swift in Sources */,
 				1EA54B161AEC046500CDDBCF /* MenuControl.swift in Sources */,
-				F6FF4FC61AEB5E4F00D3F535 /* TableItemData.swift in Sources */,
 				3DD57E8C1AEC370A00FCFFED /* ToDoItemObj.swift in Sources */,
 				3DD57E831AEC03BC00FCFFED /* AddTableViewCell.swift in Sources */,
-				F6FF4FC81AEB5E6000D3F535 /* TableItemDoc.swift in Sources */,
 				F6FF4FA61AEB5DEE00D3F535 /* AppDelegate.swift in Sources */,
 				3DD57E7D1AEB670400FCFFED /* DragView.swift in Sources */,
 			);
