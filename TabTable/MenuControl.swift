@@ -55,11 +55,6 @@ class MenuControl: NSMenu {
 
         }
     }
-    
-    func windowToFront(){
-        println("Man")
-//        self.orderFront(window)
-    }
 
     
     override func performActionForItemAtIndex(index: Int) {

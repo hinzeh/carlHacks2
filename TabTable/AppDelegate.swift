@@ -27,16 +27,15 @@ class AppDelegate: NSWindow, NSApplicationDelegate {
         self.menuControl?.statusMenuLaunch()
         self.masterViewController.view.autoresizingMask = (self.window.contentView as! NSView).autoresizingMask;
     }
-    
-    func windowToFront(){
-        println("Man")
-        self.orderFront(window)
-    }
 
 
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
         masterViewController.saveData()
+    }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+        return true
     }
 }
 
