@@ -30,6 +30,7 @@ class MasterViewController: NSViewController{
         println("Table Stuff \(sender.clickedRow)")
     }
     
+    
     override func keyDown(theEvent: NSEvent) {
         self.interpretKeyEvents([theEvent])
         var chars : String = theEvent.characters!
@@ -177,17 +178,16 @@ extension MasterViewController: DragViewDelegate{
         if (object is String || object is NSString){
             var newItem = ToDoItemObj.init()
             newItem.name = object as! String
-            newItem.linkArray.append(object as! String)
+            newItem.loadString(object as! String)
             allToDoItems.append(newItem)
         }else{
             var newItem = ToDoItemObj.init()
             newItem.name = (object as! NSURL).absoluteString!
-            newItem.linkArray.append((object as! NSURL).absoluteString!)
+            newItem.loadURL(object as! NSURL)
             allToDoItems.append(newItem)
         }
         tableView.reloadData()
         self.saveData()
-        
     }
 }
 
