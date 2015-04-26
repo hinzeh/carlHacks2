@@ -26,6 +26,7 @@ class MasterViewController: NSViewController {
         println("Table Stuff \(sender.clickedRow)")
     }
     
+    
     override func keyDown(theEvent: NSEvent) {
         self.interpretKeyEvents([theEvent])
         var chars : String = theEvent.characters!
@@ -52,9 +53,13 @@ class MasterViewController: NSViewController {
         super.viewDidLoad()
         self.loadData()
         tableView.allowsMultipleSelection = true
+        tableView.doubleAction = Selector("doubleClicked")
         // Do view setup here.
     }
     
+    func doubleClicked(){
+        println("double")
+    }
     func loadData() {
         
         self.allToDoItems = []
@@ -164,15 +169,16 @@ extension MasterViewController: DragViewDelegate{
         if (object is String || object is NSString){
             var newItem = ToDoItemObj.init()
             newItem.name = object as! String
+            newItem.loadString(object as! String)
             allToDoItems.append(newItem)
         }else{
             var newItem = ToDoItemObj.init()
             newItem.name = (object as! NSURL).absoluteString!
+            newItem.loadURL(object as! NSURL)
             allToDoItems.append(newItem)
         }
         tableView.reloadData()
         self.saveData()
-        
     }
 }
 

@@ -53,5 +53,25 @@ class ToDoItemObj: NSObject {
         dict = [self.name : [self.name, self.priority, /*self.creationDate, self.dueDate, */self.linkArray]]
         return dict
     }
-
+    
+    func loadURL(path: NSURL){
+        var temp = path.path!.lastPathComponent
+        self.name = temp
+    }
+    
+    func loadString(path: String){
+        var urlPath = NSURL(string: path)
+        println(urlPath!.absoluteURL)
+        var htmlString = NSString(contentsOfURL: urlPath!, encoding: NSUTF8StringEncoding, error: nil)
+        var titleSearchString = "(<title>)(.*?)(</title>)"
+        let titleRegex : NSRegularExpression = NSRegularExpression(pattern: titleSearchString, options:.DotMatchesLineSeparators, error: nil)!
+        var titleMatches = titleRegex.matchesInString(htmlString as! String, options: nil, range: NSMakeRange(0, htmlString!.length))
+        for item in titleMatches{
+            var titleRange = item.range
+            titleRange.location = titleRange.location+7
+            titleRange.length = titleRange.length-15
+            self.name = htmlString!.substringWithRange(titleRange)
+        }
+        println(htmlString)
+    }
 }
