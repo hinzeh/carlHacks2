@@ -57,13 +57,17 @@ class MasterViewController: NSViewController{
         super.viewDidLoad()
         self.loadData()
         tableView.allowsMultipleSelection = true
-        tableView.doubleAction = Selector("doubleClicked")
+        tableView.doubleAction = Selector ("doubleClicked")
         // Do view setup here.
     }
     
     func doubleClicked(){
+        // edit stuff on double click
         println("double")
+        
+        
     }
+    
     func loadData() {
         
         self.allToDoItems = []
