@@ -171,7 +171,8 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         delegate.deleteTableViewCell(self.doc)
     }
     
-    func addExpandView(){
+    func addExpandView(frameRect: NSRect){
         var size = self.doc.linkArray.count
+        
     }
 }
