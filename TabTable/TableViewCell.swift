@@ -29,16 +29,18 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate{
         self.doc=doc
         self.delegate=newDelegate
         var heightVar: CGFloat
-        heightVar=50.0
-        if (doc.boolExpanded){
-            heightVar=CGFloat(self.doc.linkArray.count)*30.0 + 50.0
+         heightVar=50.0
+        if (self.doc.boolExpanded){
+            heightVar=CGFloat(self.doc.linkArray.count)*30+50
         }
+        println("heightVar is \(heightVar)")
+       
         self.doc=doc
         var frameRect = NSRect(x: 0, y: 0, width:tableColumnWidth, height: heightVar)
         self.title = doc.name
-        var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
+        var textRect = NSRect(x: 5, y: heightVar, width: frameRect.width/2, height: 50)
         self.text = NSTextField(frame: textRect)
-        self.text.font = NSFont(name: "Courier", size: frameRect.height/2)
+        self.text.font = NSFont(name: "Courier", size: textRect.height/2)
         self.text.stringValue = doc.name
         self.text.editable = true
         self.text.selectable = true
@@ -55,9 +57,9 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate{
             self.text.frame = NSRect(x:5, y:frameRect.height/2-10, width: frameRect.width*(3.0/4.0), height: frameRect.height/2+10)
         }
         println(frameRect.height)
-        var dateRect = NSRect(x: 5, y: 5, width: frameRect.width*(3.0/4.0), height: frameRect.height)
+        var dateRect = NSRect(x: 5, y: heightVar-45, width: frameRect.width*(3.0/4.0), height: textRect.height)
         self.date = NSTextField(frame: dateRect)
-        self.date.font = NSFont(name: "Courier", size: frameRect.height/4)
+        self.date.font = NSFont(name: "Courier", size: dateRect.height/4)
         var today = NSDate(timeIntervalSinceNow: 0)
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/YYYY"
@@ -87,6 +89,8 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate{
 
         
         println(self.text.stringValue)
+        
+        
         super.init(frame: frameRect)
         self.button.target = self
         self.deleteButton.target = self
@@ -166,5 +170,9 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate{
     
     func deleteAction(obj:AnyObject?){
         delegate.deleteTableViewCell(self.doc)
+    }
+    
+    func addExpandView(){
+        var size = self.doc.linkArray.count
     }
 }
