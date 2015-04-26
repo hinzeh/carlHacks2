@@ -197,7 +197,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         }else{
             colorChange = true
         }
-        self.needsDisplay()
+        self.needsDisplay = true
     }
 }
 
