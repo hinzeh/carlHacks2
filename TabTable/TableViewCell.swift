@@ -24,6 +24,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
     var buttonPress: Bool=false
     var delegate : TableViewCellDelegate
     var doc: ToDoItemObj
+//    var dropZone : DragView
     var title : NSString = ""
     init(tableColumnWidth: CGFloat, doc:ToDoItemObj, newDelegate:TableViewCellDelegate) {
         self.doc=doc
@@ -38,7 +39,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         self.title = doc.name
         var textRect = NSRect(x: 5, y: 5, width: frameRect.width/2, height: frameRect.height-10)
         self.text = NSTextField(frame: textRect)
-        self.text.font = NSFont(name: "Courier", size: frameRect.height/2)
+        self.text.font = NSFont(name: "Courier", size: 25)
         self.text.stringValue = doc.name
         self.text.editable = true
         self.text.selectable = true
@@ -57,7 +58,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         println(frameRect.height)
         var dateRect = NSRect(x: 5, y: 5, width: frameRect.width*(3.0/4.0), height: frameRect.height)
         self.date = NSTextField(frame: dateRect)
-        self.date.font = NSFont(name: "Courier", size: frameRect.height/4)
+        self.date.font = NSFont(name: "Courier", size: 12.5)
         var today = NSDate(timeIntervalSinceNow: 0)
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/YYYY"
@@ -88,12 +89,16 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         
         println(self.text.stringValue)
         super.init(frame: frameRect)
+        
+        var  dropRect = NSRect(x: 500*(0.75), y: 5,  width: 40, height: 40)
+        var dropZone = DragView(frame: dropRect, newDelegate: self)
         self.button.target = self
         self.deleteButton.target = self
 
         self.text.delegate = self
         self.addSubview(text)
         self.addSubview(date)
+        self.addSubview(dropZone)
         self.addSubview(button)
         self.addSubview(deleteButton)
         site = NSURL(fileURLWithPath: "http://www.google.com")!
@@ -165,5 +170,15 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
     
     func deleteAction(obj:AnyObject?){
         delegate.deleteTableViewCell(self.doc)
+    }
+}
+
+extension TableViewCell: DragViewDelegate{
+    func receiveDragged(object: AnyObject) {
+        if (object is String || object is NSString){
+            doc.linkArray.append(object as! String)
+        }else{
+            doc.linkArray.append((object as! NSURL).absoluteString!)
+        }
     }
 }

@@ -57,7 +57,7 @@ class DragView: NSImageView, NSDraggingDestination{
 //        self.image = NSImage(named: "smallplus")
         var plus = NSImage(named:"smallplus")
         self.image = plus
-        var ratio = plus!.size.height/dirtyRect.size.height
+        var ratio = dirtyRect.size.height/plus!.size.height
         var newSize = NSMakeSize(ratio*plus!.size.width, ratio*plus!.size.height)
         var newRect = NSZeroRect
         newRect.size = newSize
