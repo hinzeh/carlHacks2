@@ -31,6 +31,9 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
     var title : NSString = ""
     init(tableColumnWidth: CGFloat, doc:ToDoItemObj, newDelegate:TableViewCellDelegate) {
         self.doc=doc
+        if doc.name.rangeOfString(".") != nil{
+            colorChange = true
+        }
         self.delegate=newDelegate
         var heightVar: CGFloat
         heightVar=50.0
@@ -114,8 +117,12 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
     }
     override func controlTextDidEndEditing(obj: NSNotification) {
         if(self.text.stringValue != self.title){
+            if(self.text.stringValue.rangeOfString(".") != nil){
+                self.text.stringValue = self.text.stringValue.stringByReplacingOccurrencesOfString(".", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            }
             self.title = self.text.stringValue
             self.doc.name = self.text.stringValue
+            self.doc.priority = self.doc.name
         }
         self.text.sizeToFit()
         if (self.text.frame.width>self.frame.width*(3.0/4.0)){
@@ -140,7 +147,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         bPath.lineWidth = 3
         NSColor(red: 0.13, green: 0.70, blue: 1, alpha: 1).set()
         bPath.stroke()
-        if colorChange{
+        if !colorChange{
             var gradient:NSGradient = NSGradient(colorsAndLocations:
                 (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.25),0.0),
                 (NSColor(red: 0.0, green: 0.1, blue: 1.0, alpha: 0.25),1))
