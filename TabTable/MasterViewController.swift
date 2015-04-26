@@ -65,7 +65,6 @@ class MasterViewController: NSViewController{
         // edit stuff on double click
         println("double")
         
-        
     }
     
     func loadData() {
@@ -177,12 +176,12 @@ extension MasterViewController: DragViewDelegate{
         println(object)
         if (object is String || object is NSString){
             var newItem = ToDoItemObj.init()
-            newItem.name = object as! String
+            newItem.linkArray.append(object as! String)
             newItem.loadString(object as! String)
             allToDoItems.append(newItem)
         }else{
             var newItem = ToDoItemObj.init()
-            newItem.name = (object as! NSURL).absoluteString!
+            newItem.linkArray.append((object as! NSURL).absoluteString!)
             newItem.loadURL(object as! NSURL)
             allToDoItems.append(newItem)
         }
