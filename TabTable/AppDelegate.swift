@@ -25,6 +25,7 @@ class AppDelegate: NSWindow, NSApplicationDelegate {
         
         self.menuControl = MenuControl(title: "TabNab",thumbkin: masterViewController, windowVar:window)
         self.menuControl?.statusMenuLaunch()
+        self.masterViewController.view.autoresizingMask = (self.window.contentView as! NSView).autoresizingMask;
     }
     
     func windowToFront(){

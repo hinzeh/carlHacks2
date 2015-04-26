@@ -69,7 +69,7 @@ class MasterViewController: NSViewController {
         if let bundlePath = NSBundle.mainBundle().pathForResource("ToDoItems", ofType: "plist") {
             
             let result1Dictionary = NSMutableDictionary(contentsOfFile: bundlePath)
-            println("Bundle ToDoItems.plist file is --> \(result1Dictionary?.description)")
+//            println("Bundle ToDoItems.plist file is --> \(result1Dictionary?.description)")
         }
         
         // Check if file exists
@@ -78,10 +78,10 @@ class MasterViewController: NSViewController {
             if let bundlePath = NSBundle.mainBundle().pathForResource("ToDoItems", ofType: "plist") {
                 
                 let resultDictionary = NSMutableDictionary(contentsOfFile: bundlePath)
-                println("Bundle ToDoItems.plist file is --> \(resultDictionary?.description)")
+//                println("Bundle ToDoItems.plist file is --> \(resultDictionary?.description)")
                 
                 fileManager.copyItemAtPath(bundlePath, toPath: path, error: nil)
-                println("copy")
+//                println("copy")
                 
             } else {
                 println("ToDoItems.plist not found. Please, make sure it is part of the bundle.")
