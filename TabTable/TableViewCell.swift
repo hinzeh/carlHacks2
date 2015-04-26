@@ -41,7 +41,7 @@ class TableViewCell : NSTableCellView{
         self.text.font = NSFont(name: "Courier", size: frameRect.height/2)
         self.text.stringValue = doc.name
         self.text.editable = true
-        self.text.selectable = false
+        self.text.selectable = true
         self.text.drawsBackground = false
         self.text.bezeled = false
         self.text.sizeToFit()
