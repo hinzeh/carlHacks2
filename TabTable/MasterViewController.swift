@@ -222,7 +222,7 @@ extension MasterViewController: TableViewCellDelegate{
         var urls = (object as! ToDoItemObj).linkArray
         var index = find(allToDoItems, object as! ToDoItemObj)
         for var i = 0; i<urls.count; ++i{
-            var newObj = ToDoItemObj(name: urls[i], priority: object.name, linkArray: [])
+            var newObj = ToDoItemObj(name: urls[i], priority: object.name, linkArray: [urls[i]])
             self.allToDoItems.insert(newObj, atIndex: index!+i+1)
         }
     }
