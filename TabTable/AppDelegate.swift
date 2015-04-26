@@ -27,11 +27,6 @@ class AppDelegate: NSWindow, NSApplicationDelegate {
         self.menuControl?.statusMenuLaunch()
         self.masterViewController.view.autoresizingMask = (self.window.contentView as! NSView).autoresizingMask;
     }
-    
-    func windowToFront(){
-        println("Man")
-        self.orderFront(window)
-    }
 
 
     func applicationWillTerminate(aNotification: NSNotification) {

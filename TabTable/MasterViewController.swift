@@ -8,22 +8,23 @@
 
 import Cocoa
 
-class MasterViewController: NSViewController {
+class MasterViewController: NSViewController{
     var allToDoItems = [ToDoItemObj]()
+    
     
     @IBOutlet weak var tableView: NSTableView!
     @IBAction func tableAction(sender: AnyObject) {
         var flags = NSEvent.modifierFlags()
-        if(flags == .ShiftKeyMask){
+        
+        if(flags == .ShiftKeyMask ){
             //do something to get url from table item
-            
-            //NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.google.com")!)
             var currentLink = allToDoItems[sender.clickedRow].name
             NSWorkspace.sharedWorkspace().openURL(NSURL(string: currentLink)!)
         }
         if (sender.clickedRow==self.allToDoItems.count){
             //last item
-        }else{
+        }
+        else{
             //other items
         }
         println("Table Stuff \(sender.clickedRow)")
@@ -55,7 +56,15 @@ class MasterViewController: NSViewController {
         super.viewDidLoad()
         self.loadData()
         tableView.allowsMultipleSelection = true
+        tableView.doubleAction = Selector ("doubleClicked")
         // Do view setup here.
+    }
+    
+    func doubleClicked(){
+        // edit stuff on double click
+        println("double")
+        
+        
     }
     
     func loadData() {
