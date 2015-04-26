@@ -105,8 +105,12 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         self.text.delegate = self
         self.addSubview(text)
         self.addSubview(date)
-        self.addSubview(dropZone)
-        self.addSubview(button)
+        if doc.name.rangeOfString(".") != nil{
+            colorChange = true
+        }else{
+            self.addSubview(dropZone)
+            self.addSubview(button)
+        }
         self.addSubview(deleteButton)
         site = NSURL(fileURLWithPath: "http://www.google.com")!
         
