@@ -27,6 +27,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
     var colorChange: Bool = false
     var delegate : TableViewCellDelegate
     var doc: ToDoItemObj
+    var textSize: CGFloat
 //    var dropZone : DragView
     var title : NSString = ""
     init(tableColumnWidth: CGFloat, doc:ToDoItemObj, newDelegate:TableViewCellDelegate) {
@@ -38,18 +39,23 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         var heightVar: CGFloat
         heightVar=50.0
         println("heightVar is \(heightVar)")
-       
+        self.textSize=17.0
+        if (colorChange){
+            self.textSize=12.0
+        }
+        
         self.doc=doc
         var frameRect = NSRect(x: 0, y: 0, width:tableColumnWidth, height: heightVar)
         self.title = doc.name
         var textRect = NSRect(x: 5, y: heightVar, width: frameRect.width/2, height: 50)
         self.text = NSTextField(frame: textRect)
-        self.text.font = NSFont(name: "Courier", size: 25)
+        self.text.font = NSFont(name: "Lucida Sans Unicode", size: textSize)
         self.text.stringValue = doc.name
         self.text.editable = true
         self.text.selectable = true
         self.text.drawsBackground = false
         self.text.bezeled = false
+        self.text.textColor = NSColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.text.sizeToFit()
         if (self.text.frame.width>frameRect.width*(3.0/4.0)){
             println("Resizing")
@@ -63,7 +69,7 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         println(frameRect.height)
         var dateRect = NSRect(x: 5, y: heightVar-45, width: frameRect.width*(3.0/4.0), height: textRect.height)
         self.date = NSTextField(frame: dateRect)
-        self.date.font = NSFont(name: "Courier", size: 12.5)
+        self.date.font = NSFont(name: "Lucida Sans Unicode", size: 9)
         var today = NSDate(timeIntervalSinceNow: 0)
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/YYYY"
@@ -153,14 +159,16 @@ class TableViewCell : NSTableCellView, NSTextFieldDelegate, NSControlTextEditing
         bPath.stroke()
         if !colorChange{
             var gradient:NSGradient = NSGradient(colorsAndLocations:
-                (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.25),0.0),
-                (NSColor(red: 0.0, green: 0.1, blue: 1.0, alpha: 0.25),1))
+                (NSColor(red: 0.0, green: 0.5, blue: 0.9, alpha: 0.5),0.0),
+                (NSColor(red: 0.0, green: 0.5, blue: 0.75, alpha: 0.5),1))
             gradient.drawInBezierPath(bPath, angle: 90.0)
 
         }else{
+            NSColor(red: 0.0, green: 0.70, blue: 1, alpha: 1).set()
+            bPath.stroke()
             var gradient:NSGradient = NSGradient(colorsAndLocations:
-            (NSColor(red: 0.0, green: 0.0, blue: 0.25, alpha: 0.25),0.0),
-            (NSColor(red: 0.0, green: 0.7, blue: 0.2, alpha: 0.25),1))
+            (NSColor(red: 0.0, green: 0.9, blue: 0.9, alpha: 0.5),0.0),
+            (NSColor(red: 0.0, green: 0.5, blue: 0.75, alpha: 0.5),1))
             gradient.drawInBezierPath(bPath, angle: 90.0)
 
         }
