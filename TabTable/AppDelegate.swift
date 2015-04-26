@@ -23,9 +23,8 @@ class AppDelegate: NSWindow, NSApplicationDelegate {
         window.contentView.addSubview(masterViewController.view)
         masterViewController.view.frame = (window.contentView as! NSView).bounds
         
-        self.menuControl = MenuControl(title: "TabNab",thumbkin: masterViewController)
+        self.menuControl = MenuControl(title: "TabNab",thumbkin: masterViewController, windowVar:window)
         self.menuControl?.statusMenuLaunch()
-        // Insert code here to initialize your application
     }
     
     func windowToFront(){
